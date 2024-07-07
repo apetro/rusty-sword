@@ -4,3 +4,5 @@ rusty-sword is intended to become both a game someone could enjoy playing and th
 
 This section of the documentation over here is about developing this game.
 
++ [Blog posts](./blogs/README.md)
++ [Home](../README.md)
