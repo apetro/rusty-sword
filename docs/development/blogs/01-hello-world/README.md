@@ -53,3 +53,5 @@ Hello, world!
 Okay. Still no idea what I'm doing.
 
 But. I built something and it ran. That's a start.
+
+Next up: Dig into the [Rust book](https://doc.rust-lang.org/book/).
