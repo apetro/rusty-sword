@@ -54,4 +54,11 @@ Okay. Still no idea what I'm doing.
 
 But. I built something and it ran. That's a start.
 
-Next up: Dig into the [Rust book](https://doc.rust-lang.org/book/).
+Next: Dig into the [Rust book](https://doc.rust-lang.org/book/).
+
+Navigation:
+
++ [Documentation home](../../../README.md)
++ [Development documentation home](../../README.md)
++ [Blogs home](../README.md)
++ [Next blog post](../002-rust-book/README.md): Dig into the [Rust book](https://doc.rust-lang.org/book/).

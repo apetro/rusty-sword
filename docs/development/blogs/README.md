@@ -6,7 +6,7 @@ I intend to cross-post these to dev.to .
 
 The blog posts:
 
-1. [Hello world](./01-hello-world/README.md)
+1. [Hello world](./001-hello-world/README.md)
 
 Navigate up away from these blogs:
 
