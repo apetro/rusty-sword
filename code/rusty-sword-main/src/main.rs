@@ -11,6 +11,8 @@ fn main() {
         .read_line(&mut character_name)
         .expect("Failed to read line");
 
+    let character_name = character_name.trim();
+
     println!("Greetings, {}.", character_name);
 
     let d_20 = rand::thread_rng().gen_range(1..=20);
