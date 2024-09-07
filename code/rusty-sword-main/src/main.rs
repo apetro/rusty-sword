@@ -18,5 +18,16 @@ fn main() {
     let d_20 = rand::thread_rng().gen_range(1..=20);
 
     println!("You rolled {d_20}.");
+
+    loop {
+        let mut action = String::new();
+        println!("What does your character do?");
+        io::stdin()
+            .read_line(&mut action)
+            .expect("Failed to read line");
+        let mut action = action.trim();
+        println!("{character_name} does {action}.");
+        println!();
+    }
 }
 
