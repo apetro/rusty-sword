@@ -5,9 +5,8 @@ fn main() {
     println!("What is your character's name?");
 
     let mut character_name = String::new();
-    let mut character_health = 10;
     let mut character_treasure = 0;
-    let character_evade = 10;
+
 
     io::stdin()
         .read_line(&mut character_name)
@@ -15,7 +14,9 @@ fn main() {
 
     let character_name = character_name.trim();
 
-    println!("Greetings, {}.", character_name);
+    let mut player_character = PlayerCharacter { name: character_name.to_string(), health: 10, evade: 10 };
+
+    println!("Greetings, {}.", player_character.name);
 
     println!("You are in a dark nest of giant spiders. It's a tough job clearing them out, but someone has got to do it.");
 
@@ -33,14 +34,14 @@ fn main() {
                 println!("You have encountered a giant spider.");
 
                 'spider: loop {
-                    if d20() >= character_evade {
-                        character_health = character_health - 1;
+                    if d20() >= player_character.evade {
+                        player_character.health = player_character.health - 1;
 
                         println!(
-                            "The spider bites you. You have {character_health} health remaining."
+                            "The spider bites you. You have {} health remaining.", player_character.health
                         );
 
-                        if character_health < 1 {
+                        if player_character.health < 1 {
                             println!("You have succumbed to your wounds.");
                             break 'main;
                         }
@@ -88,3 +89,10 @@ fn d12() -> usize {
 fn d20() -> usize {
     roll_die(20)
 }
+
+struct PlayerCharacter {
+  name: String,
+  health: usize,
+  evade: usize,
+}
+
