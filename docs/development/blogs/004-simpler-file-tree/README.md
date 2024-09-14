@@ -28,3 +28,4 @@ Navigation:
 + [Development documentation home](../../README.md)
 + [Blogs home](../README.md)
 + [Previous post](../003-rust-book-2/README.md): Muddling through learning something from the guessing game example in the Rust book
++ [Next post](../005-core-loop/README.md): Core loop

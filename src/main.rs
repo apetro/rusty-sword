@@ -1,11 +1,10 @@
 use std::io;
-use rand::Rng;
-
 
 fn main() {
     println!("What is your character's name?");
 
     let mut character_name = String::new();
+    let mut character_health = 10;
 
     io::stdin()
         .read_line(&mut character_name)
@@ -15,19 +14,25 @@ fn main() {
 
     println!("Greetings, {}.", character_name);
 
-    let d_20 = rand::thread_rng().gen_range(1..=20);
-
-    println!("You rolled {d_20}.");
+    println!("You are in a dark, dusty dungeon.");
 
     loop {
         let mut action = String::new();
-        println!("What does your character do?");
+        println!("You have encountered a giant spider.");
         io::stdin()
             .read_line(&mut action)
             .expect("Failed to read line");
-        let action = action.trim();
-        println!("{character_name} does {action}.");
+        // let action = action.trim();
+        character_health = character_health - 1;
+
+        println!("The spider bites you. You have {character_health} health remaining.");
+
+        if character_health < 1 {
+            println!("You have succumbed to your wounds. The end.");
+            break;
+        }
+
+        println!("You have defeated the giant spider.");
         println!();
     }
 }
-
