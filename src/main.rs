@@ -78,7 +78,7 @@ fn main() {
               break 'main;
             },
 
-            _ => println!("I don't know what that is."),
+            _ => println!("I don't know what how to {action}."),
         }
     }
 
