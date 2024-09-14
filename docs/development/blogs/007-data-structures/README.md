@@ -6,6 +6,8 @@ Let's add a data structure for the player character.
 
 And for the Monster.
 
+Which allows a variety of implementations of Monster, so far, all spiders.
+
 Navigation:
 
 + [Documentation home](../../../README.md)
