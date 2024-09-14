@@ -7,7 +7,6 @@ fn main() {
     let mut character_name = String::new();
     let mut character_treasure = 0;
 
-
     io::stdin()
         .read_line(&mut character_name)
         .expect("Failed to read line");
