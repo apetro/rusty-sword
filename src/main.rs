@@ -13,7 +13,11 @@ fn main() {
 
     let character_name = character_name.trim();
 
-    let mut player_character = PlayerCharacter { name: character_name.to_string(), health: 10, evade: 10 };
+    let mut player_character = PlayerCharacter {
+        name: character_name.to_string(),
+        health: 10,
+        evade: 10,
+    };
 
     println!("Greetings, {}.", player_character.name);
 
