@@ -60,3 +60,4 @@ Navigation:
 + [Development documentation home](../../README.md)
 + [Blogs home](../README.md)
 + [Previous post](../001-hello-world/README.md): hello world
++ [Next post](../003-rust-book-2/): More working through the guessing game in the Rust Book
