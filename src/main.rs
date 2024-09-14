@@ -112,17 +112,63 @@ struct Monster {
 fn level_one_spider() -> Monster {
     let spider_type = roll_die(10);
 
-  match spider_type {
-    1 => Monster {name: "big spider".to_string(), attack_verb: "bites".to_string(), hit_difficulty: 7},
-    2 => Monster {name: "large spider".to_string(), attack_verb: "bites".to_string(), hit_difficulty: 8},
-    3 => Monster {name: "extra large spider".to_string(), attack_verb: "bites".to_string(), hit_difficulty: 9},
-    4 => Monster {name: "giant spider".to_string(), attack_verb: "bites".to_string(), hit_difficulty: 10},
-    5 => Monster {name: "huge spider".to_string(), attack_verb: "chomps on".to_string(), hit_difficulty: 11},
-    6 => Monster {name: "monstrous spider".to_string(), attack_verb: "spits venom at".to_string(), hit_difficulty: 12},
-    7 => Monster {name: "eltritch spider".to_string(), attack_verb: "curses".to_string(), hit_difficulty: 13},
-    8 => Monster {name: "brood mother".to_string(), attack_verb: "bites".to_string(), hit_difficulty: 18},
-    9 => Monster {name: "shield spider".to_string(), attack_verb: "crushes".to_string(), hit_difficulty: 10},
-    10 => Monster {name: "frost spider".to_string(), attack_verb: "freezes".to_string(), hit_difficulty: 10},
-    _ => Monster {name: "generic spider".to_string(), attack_verb: "generically attacks".to_string(), hit_difficulty: 10},
-  }
+    match spider_type {
+        1 => Monster {
+            name: "big spider".to_string(),
+            attack_verb: "bites".to_string(),
+            hit_difficulty: 7,
+        },
+        2 => Monster {
+            name: "large spider".to_string(),
+            attack_verb: "bites".to_string(),
+            hit_difficulty: 8,
+        },
+        3 => Monster {
+            name: "extra large spider".to_string(),
+            attack_verb: "bites".to_string(),
+            hit_difficulty: 9,
+        },
+        4 => Monster {
+            name: "giant spider".to_string(),
+            attack_verb: "bites".to_string(),
+            hit_difficulty: 10,
+        },
+        5 => Monster {
+            name: "huge spider".to_string(),
+            attack_verb: "chomps on".to_string(),
+            hit_difficulty: 11,
+        },
+        6 => Monster {
+            name: "monstrous spider".to_string(),
+            attack_verb: "spits venom at".to_string(),
+            hit_difficulty: 12,
+        },
+        7 => Monster {
+            name: "eltritch spider".to_string(),
+            attack_verb: "curses".to_string(),
+            hit_difficulty: 13,
+        },
+        8 => Monster {
+            name: "brood mother".to_string(),
+            attack_verb: "bites".to_string(),
+            hit_difficulty: 18,
+        },
+        9 => Monster {
+            name: "shield spider".to_string(),
+            attack_verb: "crushes".to_string(),
+            hit_difficulty: 10,
+        },
+        10 => Monster {
+            name: "frost spider".to_string(),
+            attack_verb: "freezes".to_string(),
+            hit_difficulty: 10,
+        },
+        _ => Monster {
+            name: "generic spider".to_string(),
+            attack_verb: "generically attacks".to_string(),
+            hit_difficulty: 10,
+        },
+    }
+}
+
 }
