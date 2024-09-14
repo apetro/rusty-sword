@@ -26,7 +26,7 @@ fn main() {
     'main: loop {
         let mut action = String::new();
         println!();
-        println!("Would you like to HUNT a spider or LEAVE the nest?");
+        println!("Would you like to HUNT a spider, LEAVE the nest, or view your INVENTORY?");
         io::stdin()
             .read_line(&mut action)
             .expect("Failed to read line");
@@ -77,6 +77,11 @@ fn main() {
               println!("Discretion is the better part of valor. You leave the nest.");
               break 'main;
             },
+
+            "INVENTORY" => {
+                println!("You are wielding a rusty sword in your dominant hand.");
+                println!("You have {} lesser spirit coins.", character_treasure);
+            }
 
             _ => println!("I don't know what how to {action}."),
         }
