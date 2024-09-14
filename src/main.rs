@@ -17,7 +17,7 @@ fn main() {
 
     println!("Greetings, {}.", character_name);
 
-    println!("You are in a dark, dusty dungeon.");
+    println!("You are in a dark nest of giant spiders. It's a tough job clearing them out, but someone has got to do it.");
 
     'main: loop {
         let mut action = String::new();
