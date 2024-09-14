@@ -83,7 +83,19 @@ You take the coin. You now have 1 lesser spirit coins.
 You have encountered a giant spider.
 ```
 
+We're starting to have the makings of an emergent game.
+It's a deterministic progression every time, currently.
+What if you only sometimes hit the spider, and likewise the spider only sometimes bites you?
 
+I took a break to go read the latest beta of the Dagger Heart rules. Inspired by that, let's invent
+
++ difficulty to hit the monster
++ difficulty for the monster to hit you (evasion)
++ rolling to hit (2d12 for you; d20 for the monster)
+
+And implementing that, it now takes a random number of rounds to reach the main character's inevitable demise at the fangs of the Nth giant spider.
+
+This "game" needs choices. Rather than pressing forward against spiders until death, maybe the main character could decide discretion is the better part of valor and head back to town to spend those coins.
 
 Navigation:
 
