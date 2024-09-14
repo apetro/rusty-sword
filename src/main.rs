@@ -21,39 +21,56 @@ fn main() {
 
     'main: loop {
         let mut action = String::new();
-        println!("You have encountered a giant spider.");
+        println!();
+        println!("Would you like to HUNT a spider or LEAVE the nest?");
+        io::stdin()
+            .read_line(&mut action)
+            .expect("Failed to read line");
+        let action = action.trim();
 
-        'spider: loop {
-            io::stdin()
-                .read_line(&mut action)
-                .expect("Failed to read line");
-            // let action = action.trim();
+        match action {
+            "HUNT" => {
+                println!("You have encountered a giant spider.");
 
-            if d20() >= character_evade {
-                character_health = character_health - 1;
+                'spider: loop {
+                    if d20() >= character_evade {
+                        character_health = character_health - 1;
 
-                println!("The spider bites you. You have {character_health} health remaining.");
+                        println!(
+                            "The spider bites you. You have {character_health} health remaining."
+                        );
 
-                if character_health < 1 {
-                    println!("You have succumbed to your wounds.");
-                    break 'main;
+                        if character_health < 1 {
+                            println!("You have succumbed to your wounds.");
+                            break 'main;
+                        }
+                    }
+
+                    if d12() + d12() >= 10 {
+                        println!("You have defeated the giant spider.");
+
+                        println!(
+                            "The spider evaporates in a cloud of foul-smelling rainbow smoke."
+                        );
+                        println!("Incredibly, when the smoke clears it reveals an iron spirit coin where once there was a monster.");
+                        character_treasure = character_treasure + 1;
+                        println!(
+                        "You take the coin. You now have {character_treasure} lesser spirit coins."
+                    );
+                        println!();
+                        break 'spider;
+                    } else {
+                        println!("You swing your rusty sword at the spider, but miss.")
+                    }
                 }
-            }
+            },
 
-            if d12() + d12() >= 10 {
-                println!("You have defeated the giant spider.");
+            "LEAVE" => {
+              println!("Discretion is the better part of valor. You leave the nest.");
+              break 'main;
+            },
 
-                println!("The spider evaporates in a cloud of foul-smelling rainbow smoke.");
-                println!("Incredibly, when the smoke clears it reveals an iron spirit coin where once there was a monster.");
-                character_treasure = character_treasure + 1;
-                println!(
-                    "You take the coin. You now have {character_treasure} lesser spirit coins."
-                );
-                println!();
-                break 'spider;
-            } else {
-                println!("You swing your rusty sword at the spider, but miss.")
-            }
+            _ => println!("I don't know what that is."),
         }
     }
 
