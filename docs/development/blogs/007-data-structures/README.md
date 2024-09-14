@@ -4,6 +4,8 @@ So we need some data structures.
 
 Let's add a data structure for the player character.
 
+And for the Monster.
+
 Navigation:
 
 + [Documentation home](../../../README.md)

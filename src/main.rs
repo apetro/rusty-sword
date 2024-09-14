@@ -33,12 +33,14 @@ fn main() {
             "HUNT" => {
                 println!("You have encountered a giant spider.");
 
+                let spider = Monster { name: "giant spider".to_string(), attack_verb: "bites".to_string(), hit_difficulty: 10};
+
                 'spider: loop {
                     if d20() >= player_character.evade {
                         player_character.health = player_character.health - 1;
 
                         println!(
-                            "The spider bites you. You have {} health remaining.", player_character.health
+                            "The {} {} you. You have {} health remaining.", spider.name, spider.attack_verb, player_character.health
                         );
 
                         if player_character.health < 1 {
@@ -47,11 +49,11 @@ fn main() {
                         }
                     }
 
-                    if d12() + d12() >= 10 {
-                        println!("You have defeated the giant spider.");
+                    if d12() + d12() >= spider.hit_difficulty {
+                        println!("You have defeated the {}.", spider.name);
 
                         println!(
-                            "The spider evaporates in a cloud of foul-smelling rainbow smoke."
+                            "The {} evaporates in a cloud of foul-smelling rainbow smoke.", spider.name
                         );
                         println!("Incredibly, when the smoke clears it reveals an iron spirit coin where once there was a monster.");
                         character_treasure = character_treasure + 1;
@@ -61,7 +63,7 @@ fn main() {
                         println!();
                         break 'spider;
                     } else {
-                        println!("You swing your rusty sword at the spider, but miss.")
+                        println!("You swing your rusty sword at the {}, but miss.", spider.name)
                     }
                 }
             },
@@ -96,3 +98,8 @@ struct PlayerCharacter {
   evade: usize,
 }
 
+struct Monster {
+  name: String, // giant spider
+  attack_verb: String, // bites ("The giant spider bites you.")
+  hit_difficulty: usize, // 10
+}
