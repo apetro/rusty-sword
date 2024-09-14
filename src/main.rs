@@ -25,7 +25,7 @@ fn main() {
         io::stdin()
             .read_line(&mut action)
             .expect("Failed to read line");
-        let mut action = action.trim();
+        let action = action.trim();
         println!("{character_name} does {action}.");
         println!();
     }

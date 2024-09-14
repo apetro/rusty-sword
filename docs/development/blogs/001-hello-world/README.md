@@ -31,7 +31,11 @@ $ cargo --version
 cargo 1.79.0 (ffa9cf99a 2024-06-03)
 ```
 
-Okay. I vaguely think I'll end up with multiple packages, so I added a `/code` directory. I figure I'll end up with a main package for running the user interactive game and then a bunch of supporting packages. So within `/code` I ran
+Okay. I vaguely think I'll end up with multiple packages, so I added a `/code` directory. I figure I'll end up with a main package for running the user interactive game and then a bunch of supporting packages.
+
+EDIT: That multiple paths for multiple packages is premature complexity. I back it out in [a couple posts from now](../004-simpler-file-tree/README.md).
+
+So within `/code` I ran
 
 ```shell
 $ cargo new rusty-sword-main

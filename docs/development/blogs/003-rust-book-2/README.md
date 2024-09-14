@@ -61,4 +61,5 @@ Navigation:
 + [Documentation home](../../../README.md)
 + [Development documentation home](../../README.md)
 + [Blogs home](../README.md)
-+ [Previous post](../002-rust-book/README.md): hello world
++ [Previous post](../002-rust-book/README.md): Diving into the Rust Book
++ [Next post](../004-simpler-file-tree/README.md): simplifying the file tree
