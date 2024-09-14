@@ -98,20 +98,19 @@ fn d20() -> usize {
 }
 
 struct PlayerCharacter {
-  name: String,
-  health: usize,
-  evade: usize,
+    name: String,
+    health: usize,
+    evade: usize,
 }
 
 struct Monster {
-  name: String, // giant spider
-  attack_verb: String, // bites ("The giant spider bites you.")
-  hit_difficulty: usize, // 10
+    name: String,          // giant spider
+    attack_verb: String,   // bites ("The giant spider bites you.")
+    hit_difficulty: usize, // 10
 }
 
 fn level_one_spider() -> Monster {
-
-  let spider_type = roll_die(10);
+    let spider_type = roll_die(10);
 
   match spider_type {
     1 => Monster {name: "big spider".to_string(), attack_verb: "bites".to_string(), hit_difficulty: 7},
