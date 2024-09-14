@@ -61,6 +61,28 @@ The spider bites you. You have 0 health remaining.
 You have succumbed to your wounds. The end.
 ```
 
+And when you defeat the spider, you get treasure.
+
+```shell
+$ cargo run
+   Compiling rusty-sword-main v0.1.0 (/Users/apetro/vcs/github/apetro/rusty-sword)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.45s
+     Running `target/debug/rusty-sword-main`
+What is your character's name?
+Thelma
+Greetings, Thelma.
+You are in a dark, dusty dungeon.
+You have encountered a giant spider.
+
+The spider bites you. You have 9 health remaining.
+You have defeated the giant spider.
+The spider evaporates in a cloud of foul-smelling rainbow smoke.
+Incredibly, when the smoke clears it reveals an iron spirit coin where once there was a monster.
+You take the coin. You now have 1 lesser spirit coins.
+
+You have encountered a giant spider.
+```
+
 
 
 Navigation:

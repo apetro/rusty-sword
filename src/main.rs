@@ -5,6 +5,7 @@ fn main() {
 
     let mut character_name = String::new();
     let mut character_health = 10;
+    let mut character_treasure = 0;
 
     io::stdin()
         .read_line(&mut character_name)
@@ -33,6 +34,12 @@ fn main() {
         }
 
         println!("You have defeated the giant spider.");
+
+        println!("The spider evaporates in a cloud of foul-smelling rainbow smoke.");
+        println!("Incredibly, when the smoke clears it reveals an iron spirit coin where once there was a monster.");
+        character_treasure = character_treasure + 1;
+        println!("You take the coin. You now have {character_treasure} lesser spirit coins.");
         println!();
+
     }
 }
