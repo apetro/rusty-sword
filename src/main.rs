@@ -1,10 +1,12 @@
-use rand::Rng;
 use std::io;
 
 pub mod dungeon;
 
 use crate::dungeon::explore_dungeon;
 use crate::dungeon::Dungeon;
+
+use crate::dice::d12;
+use crate::dice::d20;
 
 fn main() {
     println!("What is your character's name?");
@@ -84,16 +86,20 @@ fn main() {
     println!("The end.");
 }
 
-fn roll_die(dice_size: usize) -> usize {
-    rand::thread_rng().gen_range(1..=dice_size)
-}
+pub mod dice {
+    use rand::Rng;
 
-fn d12() -> usize {
-    roll_die(12)
-}
+    fn roll_die(dice_size: usize) -> usize {
+        rand::thread_rng().gen_range(1..=dice_size)
+    }
 
-fn d20() -> usize {
-    roll_die(20)
+    pub fn d12() -> usize {
+        roll_die(12)
+    }
+
+    pub fn d20() -> usize {
+        roll_die(20)
+    }
 }
 
 struct PlayerCharacter {
