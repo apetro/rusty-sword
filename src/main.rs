@@ -95,7 +95,7 @@ fn main() {
     println!("The end.");
 }
 
-struct PlayerCharacter {
+pub struct PlayerCharacter {
     name: String,
     health: usize,
     evade: usize,
