@@ -1,11 +1,12 @@
 use rand::Rng;
+use rand::seq::SliceRandom;
 use std::io;
 
 fn main() {
     println!("What is your character's name?");
 
     let mut character_name = String::new();
-    let mut character_treasure = 0;
+    let mut inventory = Inventory { lesser_spirit_coins: 0};
 
     io::stdin()
         .read_line(&mut character_name)
@@ -13,7 +14,7 @@ fn main() {
 
     let character_name = character_name.trim();
 
-    let mut player_character = PlayerCharacter {
+    let player_character = PlayerCharacter {
         name: character_name.to_string(),
         health: 10,
         evade: 10,
@@ -21,41 +22,14 @@ fn main() {
 
     println!("Greetings, {}.", player_character.name);
 
-    println!("You are in a dark nest of scary spiders. It's a tough job clearing them out, but someone has got to do it.");
+    let nest_of_spiders = Dungeon { name: "nest of spiders".to_string(), flavor_text: "A dark nest of scary spiders. It's a tough job clearing them out, but someone has got to do it.".to_string(), monsters: spiders()};
 
-    'main: loop {
-        let mut action = String::new();
-        println!();
-        println!("Would you like to HUNT a spider, LEAVE the nest, or view your INVENTORY?");
-        io::stdin()
-            .read_line(&mut action)
-            .expect("Failed to read line");
-        let action = action.trim();
+    let dungeon_result = explore_dungeon(player_character, nest_of_spiders, inventory);
 
-        match action {
-            "HUNT" => {
-                let monster = level_one_spider();
-                let combat_result = combat_with_monster(player_character, monster);
-                player_character = combat_result.player_character;
-                if player_character.health < 1 {
-                    break 'main;
-                }
-                character_treasure = character_treasure + combat_result.lesser_spirit_coins;
-            }
+    //player_character = dungeon_result.player_character;
+    inventory = dungeon_result.inventory;
 
-            "LEAVE" => {
-                println!("Discretion is the better part of valor. You leave the nest.");
-                break 'main;
-            }
-
-            "INVENTORY" => {
-                println!("You are wielding a rusty sword in your dominant hand.");
-                println!("You have {} lesser spirit coins.", character_treasure);
-            }
-
-            _ => println!("I don't know what how to {action}."),
-        }
-    }
+    println!("You ended the game with {} lesser spirit coins.", inventory.lesser_spirit_coins);
 
     println!("The end.");
 }
@@ -84,74 +58,12 @@ struct Monster {
     hit_difficulty: usize, // 10
 }
 
-fn level_one_spider() -> Monster {
-    let spider_type = roll_die(10);
-
-    match spider_type {
-        1 => Monster {
-            name: "big spider".to_string(),
-            attack_verb: "bites".to_string(),
-            hit_difficulty: 7,
-        },
-        2 => Monster {
-            name: "large spider".to_string(),
-            attack_verb: "bites".to_string(),
-            hit_difficulty: 8,
-        },
-        3 => Monster {
-            name: "extra large spider".to_string(),
-            attack_verb: "bites".to_string(),
-            hit_difficulty: 9,
-        },
-        4 => Monster {
-            name: "giant spider".to_string(),
-            attack_verb: "bites".to_string(),
-            hit_difficulty: 10,
-        },
-        5 => Monster {
-            name: "huge spider".to_string(),
-            attack_verb: "chomps on".to_string(),
-            hit_difficulty: 11,
-        },
-        6 => Monster {
-            name: "monstrous spider".to_string(),
-            attack_verb: "spits venom at".to_string(),
-            hit_difficulty: 12,
-        },
-        7 => Monster {
-            name: "eltritch spider".to_string(),
-            attack_verb: "curses".to_string(),
-            hit_difficulty: 13,
-        },
-        8 => Monster {
-            name: "brood mother".to_string(),
-            attack_verb: "bites".to_string(),
-            hit_difficulty: 18,
-        },
-        9 => Monster {
-            name: "shield spider".to_string(),
-            attack_verb: "crushes".to_string(),
-            hit_difficulty: 10,
-        },
-        10 => Monster {
-            name: "frost spider".to_string(),
-            attack_verb: "freezes".to_string(),
-            hit_difficulty: 10,
-        },
-        _ => Monster {
-            name: "generic spider".to_string(),
-            attack_verb: "generically attacks".to_string(),
-            hit_difficulty: 10,
-        },
-    }
-}
-
 struct CombatResult {
     player_character: PlayerCharacter,
     lesser_spirit_coins: usize
 }
 
-fn combat_with_monster(mut player_character: PlayerCharacter, monster: Monster) -> CombatResult {
+fn combat_with_monster(mut player_character: PlayerCharacter, monster: &Monster) -> CombatResult {
     println!("You have encountered a {}.", monster.name);
 
     'monster: loop {
@@ -188,4 +100,123 @@ fn combat_with_monster(mut player_character: PlayerCharacter, monster: Monster) 
     }
 
     CombatResult { player_character, lesser_spirit_coins: 1 }
+}
+
+struct Dungeon {
+    name: String, // nest of spiders
+    flavor_text: String, // "A nest of scary spiders. It's a tough job clearing them out, but someone has got to do it."
+    monsters: Vec<Monster>,
+}
+
+fn spiders() -> Vec<Monster> {
+    vec![
+        Monster {
+            name: "big spider".to_string(),
+            attack_verb: "bites".to_string(),
+            hit_difficulty: 7,
+        },
+        Monster {
+            name: "large spider".to_string(),
+            attack_verb: "bites".to_string(),
+            hit_difficulty: 8,
+        },
+        Monster {
+            name: "extra large spider".to_string(),
+            attack_verb: "bites".to_string(),
+            hit_difficulty: 9,
+        },
+        Monster {
+            name: "giant spider".to_string(),
+            attack_verb: "bites".to_string(),
+            hit_difficulty: 10,
+        },
+        Monster {
+            name: "huge spider".to_string(),
+            attack_verb: "chomps on".to_string(),
+            hit_difficulty: 11,
+        },
+        Monster {
+            name: "monstrous spider".to_string(),
+            attack_verb: "spits venom at".to_string(),
+            hit_difficulty: 12,
+        },
+        Monster {
+            name: "eltritch spider".to_string(),
+            attack_verb: "curses".to_string(),
+            hit_difficulty: 13,
+        },
+        Monster {
+            name: "brood mother".to_string(),
+            attack_verb: "bites".to_string(),
+            hit_difficulty: 18,
+        },
+        Monster {
+            name: "shield spider".to_string(),
+            attack_verb: "crushes".to_string(),
+            hit_difficulty: 10,
+        },
+        Monster {
+            name: "frost spider".to_string(),
+            attack_verb: "freezes".to_string(),
+            hit_difficulty: 10,
+        }
+    ]
+}
+
+struct DungeonResult {
+    player_character: PlayerCharacter,
+    inventory: Inventory,
+}
+
+fn explore_dungeon(mut player_character: PlayerCharacter, dungeon: Dungeon, mut inventory: Inventory) -> DungeonResult {
+
+    println!("{}", dungeon.flavor_text);
+
+    'main: loop {
+        let mut action = String::new();
+        println!();
+        println!("Would you like to HUNT a monster, LEAVE {}, or view your INVENTORY?", dungeon.name);
+        io::stdin()
+            .read_line(&mut action)
+            .expect("Failed to read line");
+        let action = action.trim();
+
+        match action {
+            "HUNT" => {
+                let monster = dungeon_denizen(&dungeon);
+                let combat_result = combat_with_monster(player_character, monster);
+                player_character = combat_result.player_character;
+                if player_character.health < 1 {
+                    break 'main;
+                }
+                inventory.lesser_spirit_coins = inventory.lesser_spirit_coins + combat_result.lesser_spirit_coins;
+            }
+
+            "LEAVE" => {
+                println!("Discretion is the better part of valor. You leave the nest.");
+                break 'main;
+            }
+
+            "INVENTORY" => {
+                println!("You are wielding a rusty sword in your dominant hand.");
+                println!("You have {} lesser spirit coins.", inventory.lesser_spirit_coins);
+            }
+
+            _ => println!("I don't know what how to {action}."),
+        }
+    }
+
+    DungeonResult{ player_character, inventory }
+}
+
+
+fn dungeon_denizen(dungeon: &Dungeon) -> &Monster {
+    let mut rng = rand::thread_rng();
+    dungeon.monsters
+    .choose(&mut rng)
+    .expect("Expected the dungeon to have Monsters in it to choose from.")
+}
+
+struct Inventory {
+    lesser_spirit_coins: usize,
 }
