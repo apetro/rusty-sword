@@ -3,8 +3,8 @@ use std::io;
 
 pub mod dungeon;
 
-use crate::dungeon::Dungeon;
 use crate::dungeon::explore_dungeon;
+use crate::dungeon::Dungeon;
 
 fn main() {
     println!("What is your character's name?");
