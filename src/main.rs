@@ -74,7 +74,7 @@ fn main() {
         }
 
         if player_character.health < 1 {
-            break
+            break;
         }
 
     }
