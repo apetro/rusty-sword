@@ -1,5 +1,5 @@
 
-use crate::combat_with_monster;
+use crate::combat::combat_with_monster;
 use crate::print_inventory;
 use crate::Inventory;
 use crate::Monster;

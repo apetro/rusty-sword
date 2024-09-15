@@ -8,9 +8,6 @@ pub mod monster;
 use crate::dungeon::explore_dungeon;
 use crate::dungeon::Dungeon;
 
-use crate::dice::d12;
-use crate::dice::d20;
-
 use crate::inventory::print_inventory;
 use crate::inventory::Inventory;
 
@@ -101,49 +98,58 @@ pub struct PlayerCharacter {
     evade: usize,
 }
 
-struct CombatResult {
-    player_character: PlayerCharacter,
-    lesser_spirit_coins: usize,
-}
+pub mod combat {
 
-fn combat_with_monster(mut player_character: PlayerCharacter, monster: &Monster) -> CombatResult {
-    println!("You have encountered a {}.", monster.name);
+    use crate::PlayerCharacter;
+    use crate::monster::Monster;
+    use crate::dice::d12;
+    use crate::dice::d20;
 
-    'monster: loop {
-        if d20() >= player_character.evade {
-            player_character.health = player_character.health - 1;
+    pub struct CombatResult {
+        pub player_character: PlayerCharacter,
+        pub lesser_spirit_coins: usize,
+    }
 
-            println!(
-                "The {} {} you. You have {} health remaining.",
-                monster.name, monster.attack_verb, player_character.health
-            );
+    pub fn combat_with_monster(mut player_character: PlayerCharacter, monster: &Monster) -> CombatResult {
+        println!("You have encountered a {}.", monster.name);
 
-            if player_character.health < 1 {
-                println!("You have succumbed to your wounds.");
+        'monster: loop {
+            if d20() >= player_character.evade {
+                player_character.health = player_character.health - 1;
+
+                println!(
+                    "The {} {} you. You have {} health remaining.",
+                    monster.name, monster.attack_verb, player_character.health
+                );
+
+                if player_character.health < 1 {
+                    println!("You have succumbed to your wounds.");
+                    break 'monster;
+                }
+            }
+
+            if d12() + d12() >= monster.hit_difficulty {
+                println!("You have defeated the {}.", monster.name);
+
+                println!(
+                    "The {} evaporates in a cloud of foul-smelling rainbow smoke.",
+                    monster.name
+                );
+                println!("When the smoke dissipates, a lesser spirit coin remains, which you grab.");
+                println!();
                 break 'monster;
+            } else {
+                println!(
+                    "You swing your rusty sword at the {}, but miss.",
+                    monster.name
+                )
             }
         }
 
-        if d12() + d12() >= monster.hit_difficulty {
-            println!("You have defeated the {}.", monster.name);
-
-            println!(
-                "The {} evaporates in a cloud of foul-smelling rainbow smoke.",
-                monster.name
-            );
-            println!("When the smoke dissipates, a lesser spirit coin remains, which you grab.");
-            println!();
-            break 'monster;
-        } else {
-            println!(
-                "You swing your rusty sword at the {}, but miss.",
-                monster.name
-            )
+        CombatResult {
+            player_character,
+            lesser_spirit_coins: 1,
         }
     }
-
-    CombatResult {
-        player_character,
-        lesser_spirit_coins: 1,
-    }
 }
+
