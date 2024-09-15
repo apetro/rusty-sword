@@ -9,6 +9,9 @@ use crate::dungeon::Dungeon;
 use crate::dice::d12;
 use crate::dice::d20;
 
+use crate::inventory::print_inventory;
+use crate::inventory::Inventory;
+
 fn main() {
     println!("What is your character's name?");
 
@@ -201,14 +204,16 @@ fn spiders() -> Vec<Monster> {
     ]
 }
 
-struct Inventory {
-    lesser_spirit_coins: usize,
-}
+pub mod inventory {
+    pub struct Inventory {
+        pub lesser_spirit_coins: usize,
+    }
 
-fn print_inventory(inventory: &Inventory) {
-    println!("You are wielding a rusty sword in your dominant hand.");
-    println!(
-        "You have {} lesser spirit coins.",
-        inventory.lesser_spirit_coins
-    );
+    pub fn print_inventory(inventory: &Inventory) {
+        println!("You are wielding a rusty sword in your dominant hand.");
+        println!(
+            "You have {} lesser spirit coins.",
+            inventory.lesser_spirit_coins
+        );
+    }
 }

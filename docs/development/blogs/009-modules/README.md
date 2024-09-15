@@ -18,6 +18,8 @@ Anyway, it compiles with some kind of warnings about types not being the same am
 
 Ignoring those warnings for now, I factor the dungeon module out into its own file `dungeon.rs`. 76 lines. Bringing `main.rs` down to 221 lines.
 
+Alright, let's go modular. A module for inventory.
+
 Navigation:
 
 + [Documentation home](../../../README.md)
