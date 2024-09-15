@@ -213,13 +213,7 @@ fn explore_dungeon(
                 break 'main;
             }
 
-            "INVENTORY" => {
-                println!("You are wielding a rusty sword in your dominant hand.");
-                println!(
-                    "You have {} lesser spirit coins.",
-                    inventory.lesser_spirit_coins
-                );
-            }
+            "INVENTORY" => print_inventory(&inventory),
 
             _ => println!("I don't know what how to {action}."),
         }
@@ -241,4 +235,12 @@ fn dungeon_denizen(dungeon: &Dungeon) -> &Monster {
 
 struct Inventory {
     lesser_spirit_coins: usize,
+}
+
+fn print_inventory(inventory: &Inventory) {
+    println!("You are wielding a rusty sword in your dominant hand.");
+    println!(
+        "You have {} lesser spirit coins.",
+        inventory.lesser_spirit_coins
+    );
 }
