@@ -28,9 +28,7 @@ fn main() {
 
     println!("Greetings, {}.", player_character.name);
 
-
     loop {
-
         let mut action = String::new();
         println!();
         println!(
@@ -76,10 +74,7 @@ fn main() {
         if player_character.health < 1 {
             break;
         }
-
     }
-
-
 
     println!(
         "{} ended the game with {} lesser spirit coins.",
