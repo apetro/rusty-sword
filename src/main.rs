@@ -101,7 +101,6 @@ struct PlayerCharacter {
     evade: usize,
 }
 
-
 struct CombatResult {
     player_character: PlayerCharacter,
     lesser_spirit_coins: usize,
@@ -148,4 +147,3 @@ fn combat_with_monster(mut player_character: PlayerCharacter, monster: &Monster)
         lesser_spirit_coins: 1,
     }
 }
-
