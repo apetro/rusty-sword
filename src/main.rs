@@ -1,12 +1,14 @@
-use rand::Rng;
 use rand::seq::SliceRandom;
+use rand::Rng;
 use std::io;
 
 fn main() {
     println!("What is your character's name?");
 
     let mut character_name = String::new();
-    let mut inventory = Inventory { lesser_spirit_coins: 0};
+    let mut inventory = Inventory {
+        lesser_spirit_coins: 0,
+    };
 
     io::stdin()
         .read_line(&mut character_name)
@@ -29,7 +31,10 @@ fn main() {
     //player_character = dungeon_result.player_character;
     inventory = dungeon_result.inventory;
 
-    println!("You ended the game with {} lesser spirit coins.", inventory.lesser_spirit_coins);
+    println!(
+        "You ended the game with {} lesser spirit coins.",
+        inventory.lesser_spirit_coins
+    );
 
     println!("The end.");
 }
@@ -60,7 +65,7 @@ struct Monster {
 
 struct CombatResult {
     player_character: PlayerCharacter,
-    lesser_spirit_coins: usize
+    lesser_spirit_coins: usize,
 }
 
 fn combat_with_monster(mut player_character: PlayerCharacter, monster: &Monster) -> CombatResult {
@@ -99,11 +104,14 @@ fn combat_with_monster(mut player_character: PlayerCharacter, monster: &Monster)
         }
     }
 
-    CombatResult { player_character, lesser_spirit_coins: 1 }
+    CombatResult {
+        player_character,
+        lesser_spirit_coins: 1,
+    }
 }
 
 struct Dungeon {
-    name: String, // nest of spiders
+    name: String,        // nest of spiders
     flavor_text: String, // "A nest of scary spiders. It's a tough job clearing them out, but someone has got to do it."
     monsters: Vec<Monster>,
 }
@@ -159,7 +167,7 @@ fn spiders() -> Vec<Monster> {
             name: "frost spider".to_string(),
             attack_verb: "freezes".to_string(),
             hit_difficulty: 10,
-        }
+        },
     ]
 }
 
@@ -168,14 +176,20 @@ struct DungeonResult {
     inventory: Inventory,
 }
 
-fn explore_dungeon(mut player_character: PlayerCharacter, dungeon: Dungeon, mut inventory: Inventory) -> DungeonResult {
-
+fn explore_dungeon(
+    mut player_character: PlayerCharacter,
+    dungeon: Dungeon,
+    mut inventory: Inventory,
+) -> DungeonResult {
     println!("{}", dungeon.flavor_text);
 
     'main: loop {
         let mut action = String::new();
         println!();
-        println!("Would you like to HUNT a monster, LEAVE {}, or view your INVENTORY?", dungeon.name);
+        println!(
+            "Would you like to HUNT a monster, LEAVE {}, or view your INVENTORY?",
+            dungeon.name
+        );
         io::stdin()
             .read_line(&mut action)
             .expect("Failed to read line");
@@ -189,7 +203,8 @@ fn explore_dungeon(mut player_character: PlayerCharacter, dungeon: Dungeon, mut 
                 if player_character.health < 1 {
                     break 'main;
                 }
-                inventory.lesser_spirit_coins = inventory.lesser_spirit_coins + combat_result.lesser_spirit_coins;
+                inventory.lesser_spirit_coins =
+                    inventory.lesser_spirit_coins + combat_result.lesser_spirit_coins;
             }
 
             "LEAVE" => {
@@ -199,22 +214,28 @@ fn explore_dungeon(mut player_character: PlayerCharacter, dungeon: Dungeon, mut 
 
             "INVENTORY" => {
                 println!("You are wielding a rusty sword in your dominant hand.");
-                println!("You have {} lesser spirit coins.", inventory.lesser_spirit_coins);
+                println!(
+                    "You have {} lesser spirit coins.",
+                    inventory.lesser_spirit_coins
+                );
             }
 
             _ => println!("I don't know what how to {action}."),
         }
     }
 
-    DungeonResult{ player_character, inventory }
+    DungeonResult {
+        player_character,
+        inventory,
+    }
 }
-
 
 fn dungeon_denizen(dungeon: &Dungeon) -> &Monster {
     let mut rng = rand::thread_rng();
-    dungeon.monsters
-    .choose(&mut rng)
-    .expect("Expected the dungeon to have Monsters in it to choose from.")
+    dungeon
+        .monsters
+        .choose(&mut rng)
+        .expect("Expected the dungeon to have Monsters in it to choose from.")
 }
 
 struct Inventory {
