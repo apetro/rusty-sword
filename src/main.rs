@@ -78,8 +78,7 @@ fn main() {
 
     println!(
         "{} ended the game with {} lesser spirit coins.",
-        player_character.name,
-        inventory.lesser_spirit_coins
+        player_character.name, inventory.lesser_spirit_coins
     );
 
     println!("The end.");
