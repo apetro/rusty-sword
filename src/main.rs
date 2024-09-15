@@ -1,8 +1,8 @@
 use std::io;
 
 pub mod dice;
-pub mod inventory;
 pub mod dungeon;
+pub mod inventory;
 pub mod monster;
 
 use crate::dungeon::explore_dungeon;
