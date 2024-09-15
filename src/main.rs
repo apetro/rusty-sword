@@ -187,6 +187,7 @@ fn explore_dungeon(
     'main: loop {
         let mut action = String::new();
         println!();
+        println!("Location: {}", dungeon.name);
         println!(
             "Would you like to HUNT a monster, LEAVE {}, or view your INVENTORY?",
             dungeon.name
