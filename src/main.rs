@@ -51,7 +51,15 @@ fn main() {
                 inventory = dungeon_result.inventory;
             }
             "BRIDGE" => {
-                let troll_bridge: Dungeon = Dungeon { name: "troll bridge".to_string(), flavor_text: "A bridge under which lives a grumpy troll".to_string(), monsters: vec![Monster {name: "Bridge Troll".to_string(), attack_verb: "whomps".to_string(), hit_difficulty: 20}]};
+                let troll_bridge: Dungeon = Dungeon {
+                    name: "troll bridge".to_string(),
+                    flavor_text: "A bridge under which lives a grumpy troll".to_string(),
+                    monsters: vec![Monster {
+                        name: "Bridge Troll".to_string(),
+                        attack_verb: "whomps".to_string(),
+                        hit_difficulty: 20,
+                    }],
+                };
                 let dungeon_result = explore_dungeon(player_character, troll_bridge, inventory);
 
                 player_character = dungeon_result.player_character;
