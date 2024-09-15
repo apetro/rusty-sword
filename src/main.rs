@@ -16,7 +16,7 @@ fn main() {
 
     let character_name = character_name.trim();
 
-    let player_character = PlayerCharacter {
+    let mut player_character = PlayerCharacter {
         name: character_name.to_string(),
         health: 10,
         evade: 10,
@@ -28,11 +28,12 @@ fn main() {
 
     let dungeon_result = explore_dungeon(player_character, nest_of_spiders, inventory);
 
-    //player_character = dungeon_result.player_character;
+    player_character = dungeon_result.player_character;
     inventory = dungeon_result.inventory;
 
     println!(
-        "You ended the game with {} lesser spirit coins.",
+        "{} ended the game with {} lesser spirit coins.",
+        player_character.name,
         inventory.lesser_spirit_coins
     );
 
